@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700&display=swap");
+/* .main {
+  min-height: 100vh;
+  padding: 4rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
+@tailwind base;
+@layer base {
+	*,
+	*::after,
+	*::before {
+		-webkit-user-select: none; /* Safari */
+		-ms-user-select: none; /* IE 10 and IE 11 */
+		user-select: none; /* Standard syntax */
+	}
+	*::-webkit-scrollbar {
+		width: 0;
+	}
+	* {
+		scrollbar-width: none !important;
+	}
+	html,
+	body {
+		@apply min-h-screen font-work-sans w-full overflow-hidden;
+	}
+}
+/*  */
+@tailwind components;
+@tailwind utilities;
+
+/* @media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+} */
