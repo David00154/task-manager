@@ -1,9 +1,24 @@
 import React, { createContext, FC, ReactElement, useContext, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
+
+type Task = {
+    title: string;
+    description: string;
+    subTasks: Array<Pick<Task, "title">>;
+    status: string;
+}
+
+type Status = string;
+
+type Board = {
+    name: string,
+    tasks: Array<{ column: Status, items: Task[] }>
+    // tasks: Record<"column", Task[]>[]
+}
 export type State = {
-    tasks?: [],
-    columns?: [],
-    boards?: [],
+    tasks?: Pick<Board, "tasks">,
+    columns?: Status[],
+    boards?: Board[],
     enableAddTaskPopup: boolean
 }
 
@@ -17,16 +32,22 @@ const Global = createContext<GlobalProviderProps>(null!)
 const GlobalProvider: FC<{ children: ReactElement }> = ({ children }) => {
 
     const initialState: State = {
-        enableAddTaskPopup: false
+        enableAddTaskPopup: false,
+        // boards: [{ name: "x", tasks: [{ column: {} }] }]
     }
 
     const [state, setState] = useState<State>(initialState)
+
+    const addTask = () => {
+
+    }
 
     return (
         <Global.Provider value={{
             state,
             //@ts-ignore
-            setState
+            setState,
+            addTask
         }}>
             <Toaster position="top-right" reverseOrder={false} />
             {children}

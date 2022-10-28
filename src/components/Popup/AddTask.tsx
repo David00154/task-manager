@@ -34,7 +34,7 @@ const AddTask: FC = () => {
     let schema = z.object({
         title: z.string().min(1, {
             message: "Title must contain at least 1 character(s)"
-        }),
+        }).max(50, {}),
         description: z.string().min(1, {
             message: "Description must contain at least 1 character(s)"
         }),
@@ -115,14 +115,14 @@ const AddTask: FC = () => {
                             <input type="text" id="title"
                                 {...form.register('title')} className="bg-transparent border text-gray-900 text-sm rounded-md focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400 dark:text-white focus:ring-blue-500 dark:focus:border-blue-500" placeholder="e.g Take a coffee break" autoComplete='off' aria-autocomplete='none' autoCorrect='off'></input>
                             {form.formState.errors?.title && (
-                                <p className="text-red-700 text-sm mt-1">{form.formState.errors?.title.message}</p>
+                                <ErrorText text={form.formState.errors?.title.message} />
                             )}
                         </div>
                         <div>
                             <label htmlFor="description" className='block mb-2 text-base font-medium text-white'>Description</label>
                             <textarea {...form.register('description')} id="description" rows={5} className="block p-2.5 w-full text-sm text-gray-900 bg-transparent   rounded-lg border focus:ring-blue-500 focus:border-blue-500  border-gray-600 placeholder-gray-400 dark:text-white" placeholder="e.g It's always good to take a break. This 15 minute break will charge the battries a little."></textarea>
                             {form.formState.errors?.description && (
-                                <p className="text-red-700 text-sm mt-1">{form.formState.errors?.description.message}</p>
+                                <ErrorText text={form.formState.errors?.description.message} />
                             )}
                         </div>
                         <div>
@@ -140,7 +140,7 @@ const AddTask: FC = () => {
                                             </button>
                                         </li>
                                         {form.formState.errors?.subTasks?.[index]?.title && (
-                                            <p className="text-red-700 text-sm mt-1">{form.formState.errors?.subTasks?.[index]?.title?.message}</p>
+                                            <ErrorText key={index} text={form.formState.errors?.subTasks?.[index]?.title?.message} />
                                         )}
                                     </>
                                 ))}
@@ -227,3 +227,9 @@ const AddTask: FC = () => {
 
 export default AddTask;
 
+
+const ErrorText: FC<{ text?: string }> = ({ text }) => {
+    return (
+        <p className="text-red-500 text-sm mt-1">{text}</p>
+    )
+}
