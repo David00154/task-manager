@@ -126,7 +126,7 @@ const AddTask: FC = () => {
                             )}
                         </div>
                         <div>
-                            <label htmlFor="sub_tasks" className='block mb-2 text-base font-medium text-white'>Subtasks</label>
+                            <label htmlFor="sub_tasks" className='block mb-2 text-base font-medium text-white'>Subtask(s)</label>
                             <ul className='flex flex-col gap-2 mb-4'>
                                 {controlledFields.map((field, index) => (
                                     <>
@@ -139,11 +139,17 @@ const AddTask: FC = () => {
                                                 <HiXMark size={20} />
                                             </button>
                                         </li>
-                                        {form.formState.errors?.subTasks?.[index]?.title && (
+                                        {/* {form.formState.errors?.subTasks?.[index]?.title && (
                                             <ErrorText key={index} text={form.formState.errors?.subTasks?.[index]?.title?.message} />
-                                        )}
+                                        )} */}
+                                        {/* {form.formState.errors?.subTasks?.length! > 0 && (
+                                            <ErrorText text={form.formState.errors?.subTasks?.message} />
+                                        )} */}
                                     </>
                                 ))}
+                                {form.formState.errors?.subTasks?.length! > 0 && (
+                                    <ErrorText text="Empty subtask(s) field(s) are not required!!" />
+                                )}
                             </ul>
                             <button type="button" className='w-full text-site-purple justify-center inline-flex py-2 bg-white rounded-full text-[14.5px] font-medium items-center' onClick={() => {
                                 if (fields.length < 4) {
