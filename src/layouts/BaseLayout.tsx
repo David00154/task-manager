@@ -18,7 +18,7 @@ const BaseLayout: FC<{ children: ReactElement }> = function ({ children }): Reac
                 switch (router.query?.action) {
                     case "add-task":
                     case "view-task":
-                        router.back()
+                        router.replace('/')
                         break;
                     default:
                         break;

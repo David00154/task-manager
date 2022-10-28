@@ -102,7 +102,7 @@ const AddTask: FC = () => {
                     <h1 className="text-white font-medium text-base">Add New Task</h1>
                     <button onClick={() => {
                         if (router.query?.action == "add-task") {
-                            router.back()
+                            router.replace('/')
                         }
                     }} className="bg-gray-700 p-1 rounded-full shadow-2xl">
                         <HiXMark className="text-white" strokeWidth={1} size={15} />
