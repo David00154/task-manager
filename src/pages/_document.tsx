@@ -6,7 +6,7 @@ export default class MyDocument extends Document {
 		return (
 			<Html lang="en">
 				<Head >
-					<Script strategy="lazyOnload">{`
+					<Script id="my-script-1" strategy="lazyOnload">{`
 						if ("serviceWorker" in navigator) {
 							// window.addEventListener("load", () => {
 							navigator.serviceWorker
